@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC's C++ Corner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        :root { --accent: #00ff9f; }
+        .tail-container { font-family: 'Inter', system-ui, sans-serif; }
+        .logo-font { font-family: 'Space Grotesk', sans-serif; }
+        .code-window { background: #1a1a2e; border: 1px solid #00ff9f33; }
+        .cc-float { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+</head>
+<body class="tail-container bg-zinc-950 text-zinc-200 min-h-screen">
+    <div class="flex h-screen">
+        <!-- 网站内容（简化版先放这里，后面可以再完善） -->
+        <div class="flex-1 p-10">
+            <h1 class="text-6xl font-bold text-emerald-400 logo-font">CC's C++ Corner</h1>
+            <p class="text-2xl text-zinc-400 mt-4">My Competitive Programming Snippets</p>
+            <p class="mt-8 text-lg">网站正在加载中... 如果看到这个说明已经成功啦！</p>
+            
+            <div class="mt-12">
+                <button onclick="alert('🍕 C.C. 说：主人好棒！')" 
+                        class="px-8 py-4 bg-emerald-500 text-black font-bold rounded-3xl text-xl">
+                    点击喂 C.C. Pizza
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
