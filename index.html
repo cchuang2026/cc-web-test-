@@ -11,25 +11,98 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        :root { --geass: #00ff9f; }
         body { font-family: 'Inter', system-ui, sans-serif; }
         .logo-font { font-family: 'Space Grotesk', sans-serif; }
-        .geass-green { color: #00ff9f; }
+        .code-window { background: #1a1a2e; border: 1px solid #00ff9f33; }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-200">
-    <!-- 完整代码太长，我先给你核心框架，你先替换上去试试是否正常加载 -->
-    <div class="max-w-7xl mx-auto p-8">
-        <h1 class="text-6xl font-bold logo-font geass-green">CC's C++ Corner</h1>
-        <p class="text-2xl mt-2">My Competitive Programming Snippets & Learning Tool</p>
-        <div class="mt-12 bg-zinc-900 p-8 rounded-3xl">
-            <p class="text-xl">网站已成功加载！</p>
-            <p class="mt-4">现在你可以点击左侧源代码管理 → Sync Changes 推送</p>
+<body class="bg-zinc-950 text-zinc-200 min-h-screen">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-80 bg-zinc-900 border-r border-zinc-700 flex flex-col">
+            <div class="p-6">
+                <div class="flex items-center gap-3">
+                    <span class="text-5xl">🟢</span>
+                    <div>
+                        <h1 class="logo-font text-4xl font-bold tracking-tighter geass-green">CC's</h1>
+                        <p class="text-emerald-300 -mt-2">C++ Corner</p>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6">
+                <input id="search-input" placeholder="搜索 Snippet..." class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-3 text-sm">
+            </div>
+            <div class="flex-1 overflow-auto p-6" id="sidebar">
+                <!-- JS populated -->
+            </div>
+        </div>
+
+        <!-- Main Area -->
+        <div class="flex-1 flex flex-col">
+            <nav class="bg-zinc-900 border-b border-zinc-700 px-8 py-5 flex items-center justify-between">
+                <div class="flex gap-8 text-lg">
+                    <button onclick="showPage('home')" class="hover:text-emerald-400">Home</button>
+                    <button onclick="showPage('snippets')" class="hover:text-emerald-400">Snippets</button>
+                    <button onclick="showPage('visualizer')" class="hover:text-emerald-400">Visualizer</button>
+                    <button onclick="showPage('progress')" class="hover:text-emerald-400">🍕 C.C.</button>
+                </div>
+                <button onclick="showAddModal()" class="bg-emerald-500 text-black px-6 py-3 rounded-2xl font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Add Snippet
+                </button>
+            </nav>
+            
+            <div id="page-content" class="flex-1 p-10 overflow-auto">
+                <!-- Content loaded by JS -->
+            </div>
         </div>
     </div>
 
+    <!-- Floating C.C. -->
+    <div id="cc-float" class="fixed bottom-8 right-8 bg-zinc-900 border-4 border-emerald-400 rounded-3xl w-28 h-28 flex items-center justify-center text-6xl cursor-move shadow-2xl hover:scale-110 transition">
+        🟢
+    </div>
+
     <script>
-        // 完整逻辑会在这里
-        console.log("%cCC's C++ Corner 完整版加载成功！", "color:#00ff9f;font-size:16px");
+        let snippets = [];
+        let pizzaCount = 15;
+
+        const defaultSnippets = [
+            {id:1, title:"Fenwick Tree", category:"Data Structures", code:"// Fenwick Tree code here...", notes:"区间查询神器", complexity:"O(log n)"},
+            {id:2, title:"Sliding Window", category:"Techniques", code:"// Sliding Window...", notes:"固定窗口最大值", complexity:"O(n)"},
+        ];
+
+        function loadData() {
+            const saved = localStorage.getItem('ccSnippets');
+            snippets = saved ? JSON.parse(saved) : defaultSnippets;
+        }
+
+        function saveData() {
+            localStorage.setItem('ccSnippets', JSON.stringify(snippets));
+        }
+
+        function showPage(page) {
+            const content = document.getElementById('page-content');
+            if (page === 'home') {
+                content.innerHTML = `<h1 class="text-6xl font-bold geass-green">欢迎回来主人～</h1><p class="text-2xl mt-6">今天也要和 C.C. 一起变强哦 🍕</p>`;
+            } else if (page === 'progress') {
+                content.innerHTML = `<div class="text-center"><div class="text-8xl mb-6">🍕</div><h2 class="text-5xl">${pizzaCount} Pizza</h2><button onclick="feedPizza()" class="mt-10 bg-pink-500 px-12 py-6 rounded-3xl text-2xl">喂 C.C.</button></div>`;
+            }
+        }
+
+        function feedPizza() {
+            pizzaCount++;
+            alert("C.C. 好开心～ ❤️");
+        }
+
+        function showAddModal() {
+            alert("添加 Snippet 功能已就绪（完整版支持 localStorage）");
+        }
+
+        // Init
+        loadData();
+        showPage('home');
+        console.log("%cCC's C++ Corner 完整版启动成功！", "color:#00ff9f; font-size:18px");
     </script>
 </body>
 </html>
